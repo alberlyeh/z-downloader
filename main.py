@@ -17,8 +17,25 @@ parser.add_argument("org", help="Organization, first element of the URI (i.e., s
 hostbase = "https://saas.hrzucchetti.it"
 
 headers = {
-	"Content-Type" : "application/x-www-form-urlencoded"
+	"Content-Length": "19",
+    	"Cache-Control": "max-age=0",
+    	"Sec-Ch-Ua": "",
+    	"Sec-Ch-Ua-Mobile": "?0",
+    	"Sec-Ch-Ua-Platform": "",
+    	"Upgrade-Insecure-Requests": "1",
+    	"Origin": "https://saas.hrzucchetti.it",
+    	"Content-Type": "application/x-www-form-urlencoded",
+    	"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.110 Safari/537.36",
+    	"Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+    	"Sec-Fetch-Site": "same-origin",
+    	"Sec-Fetch-Mode": "navigate",
+    	"Sec-Fetch-Dest": "document",
+    	"Referer": "https://saas.hrzucchetti.it/hrpbvtech/jsp/gsmd_container.jsp",
+    	"Accept-Encoding": "gzip, deflate",
+    	"Accept-Language": "it-IT,it;q=0.9,en-US;q=0.8,en;q=0.7",
+    	"Connection": "close"
 }
+
 
 logging.basicConfig(format='[%(asctime)s]: %(message)s', level = logging.INFO)
 
@@ -164,6 +181,7 @@ def downloadDocuments(org):
 			r = session.post(url, data=data, headers=headers)
 			if r.status_code == 200:
 				fp.write(r.content)
+				file_size = len(r.content) 
 		logging.info(f"Status code {r.status_code}, ID \"{x[0]}\",Size: {file_size}, Document \"{x[1]}\" ")
 
 
