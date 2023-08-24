@@ -17,23 +17,7 @@ parser.add_argument("org", help="Organization, first element of the URI (i.e., s
 hostbase = "https://saas.hrzucchetti.it"
 
 headers = {
-	"Content-Length": "19",
-    	"Cache-Control": "max-age=0",
-    	"Sec-Ch-Ua": "",
-    	"Sec-Ch-Ua-Mobile": "?0",
-    	"Sec-Ch-Ua-Platform": "",
-    	"Upgrade-Insecure-Requests": "1",
-    	"Origin": "https://saas.hrzucchetti.it",
     	"Content-Type": "application/x-www-form-urlencoded",
-    	"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.110 Safari/537.36",
-    	"Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-    	"Sec-Fetch-Site": "same-origin",
-    	"Sec-Fetch-Mode": "navigate",
-    	"Sec-Fetch-Dest": "document",
-    	"Referer": "https://saas.hrzucchetti.it/hrpbvtech/jsp/gsmd_container.jsp",
-    	"Accept-Encoding": "gzip, deflate",
-    	"Accept-Language": "it-IT,it;q=0.9,en-US;q=0.8,en;q=0.7",
-    	"Connection": "close"
 }
 
 
@@ -172,7 +156,7 @@ def downloadDocuments(org):
 		"m_cAtExit" : "close"
 	}
 	
-	url = "https://saas.hrzucchetti.it/hrpbvtech/servlet/ushp_bexecdoc"
+	url = f"{hostbase}/{org}/servlet/ushp_bexecdoc"
 	
 	for x in sqlData["Data"][0:-1]:
 		logging.info(f"Downloading document \"{x[1]}\"")
