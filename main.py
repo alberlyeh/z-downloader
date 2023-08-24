@@ -154,7 +154,9 @@ def downloadDocuments(org):
 		"m_cID" : m_cID,
 		"m_cAtExit" : "close"
 	}
-
+	
+	url = "https://saas.hrzucchetti.it/hrpbvtech/servlet/ushp_bexecdoc"
+	
 	for x in sqlData["Data"][0:-1]:
 		logging.info(f"Downloading document \"{x[1]}\"")
 		with open(f"{x[1].replace(' ','_')}.pdf","wb") as fp:
@@ -162,7 +164,7 @@ def downloadDocuments(org):
 			r = session.post(url, data=data, headers=headers)
 			if r.status_code == 200:
 				fp.write(r.content)
-		logging.info(f"Document \"{x[1]}\" downloaded")
+		logging.info(f"Status code {r.status_code}, ID \"{x[0]}\",Size: {file_size}, Document \"{x[1]}\" ")
 
 
 if __name__ == "__main__":
